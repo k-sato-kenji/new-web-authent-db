@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TodoApp.Models.Todo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+<!-- ＠レーザーのコードターゲットと呼ばれサーバーサイドで処理される -->
+<h2>Index</h2>
+<!--　Create 画面を生成する  -->
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.summary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.done)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.limit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.done)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- bootstrapの導入 -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        @if (Request.IsAuthenticated)
+        {
+            <!-- ログインの場合、true -->
+            @Html.ActionLink("ログアウト", "SignOut", new { Controller = "Login" })
+
+            if (User.IsInRole("Administrators"))
+            {
+                <span>|</span>
+                @Html.ActionLink("ユーザー管理", "Index", new { Controller = "Users" });
+            }
+
+            <span>|</span>
+            @Html.ActionLink("Todo管理", "Index", new { Controller = "Todoes" });
+
+
+        }
+    </div>
+    <!-- bootstrap の導入 -->
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+</html>
